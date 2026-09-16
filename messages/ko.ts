@@ -215,6 +215,7 @@ export const ko: Messages = {
     back: "뒤로가기",
     searchPlaceholder: "상품을 검색해보세요",
     imageSearch: "이미지로 검색",
+    allCategories: "전체 카테고리",
   },
   localeSelector: {
     title: "언어 선택",
@@ -457,5 +458,6 @@ export const ko: Messages = {
     viewImageAt: "{index}번째 이미지 보기",
     goToBanner: "{index}번째 배너로 이동",
     productDetailNav: "상품 상세 섹션 이동",
+    closeMenu: "메뉴 닫기",
   },
 };

@@ -213,6 +213,7 @@ export type Messages = {
     back: string;
     searchPlaceholder: string;
     imageSearch: string;
+    allCategories: string;
   };
   localeSelector: {
     title: string;
@@ -457,6 +458,7 @@ export type Messages = {
     viewImageAt: string;
     goToBanner: string;
     productDetailNav: string;
+    closeMenu: string;
   };
 };
 

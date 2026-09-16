@@ -215,6 +215,7 @@ export const en: Messages = {
     back: "Back",
     searchPlaceholder: "Search for products",
     imageSearch: "Search by image",
+    allCategories: "All Categories",
   },
   localeSelector: {
     title: "Select language",
@@ -457,5 +458,6 @@ export const en: Messages = {
     viewImageAt: "View image {index}",
     goToBanner: "Go to banner {index}",
     productDetailNav: "Jump to product detail section",
+    closeMenu: "Close menu",
   },
 };

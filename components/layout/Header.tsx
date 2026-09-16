@@ -2,9 +2,11 @@
 
 import { Camera, Menu, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 import { PageContainer } from "@/components/common/PageContainer";
 import { HeaderSearchBox } from "@/components/layout/HeaderSearchBox";
 import { MarketSelector } from "@/components/layout/MarketSelector";
+import { NavDrawer } from "@/components/layout/NavDrawer";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
 import { useMarket } from "@/contexts/MarketContext";
@@ -15,13 +17,19 @@ export function Header() {
   const { currentUser, isAuthenticated } = useAuth();
   const { market } = useMarket();
   const messages = getMessages(market.locale);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background">
       <PageContainer>
         <div className="flex items-center justify-between py-3">
           <div className="flex items-center gap-3">
-            <button type="button" aria-label={messages.a11y.menu} className="cursor-not-allowed text-text-main">
+            <button
+              type="button"
+              aria-label={messages.a11y.menu}
+              onClick={() => setMenuOpen(true)}
+              className="text-text-main"
+            >
               <Menu size={22} />
             </button>
             <Link href="/" className="text-xl font-bold text-primary">
@@ -62,6 +70,8 @@ export function Header() {
           </Link>
         </div>
       </PageContainer>
+
+      <NavDrawer open={menuOpen} onClose={() => setMenuOpen(false)} />
     </header>
   );
 }
