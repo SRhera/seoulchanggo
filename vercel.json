@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/internal/cancel-stale-orders",
-      "schedule": "0 * * * *"
+      "schedule": "0 0 * * *"
     }
   ]
 }
