@@ -18,7 +18,19 @@ export function ProductionConfigBanner() {
   // Reports presence/length only, never the actual secret values.
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  const debug = `URL:${url ? `set(len ${url.length})` : "MISSING"} ANON:${anon ? `set(len ${anon.length})` : "MISSING"}`;
+  const serviceRole = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const matchingKeys = Object.keys(process.env)
+    .filter((k) => k.includes("SUPABASE"))
+    .sort()
+    .join(",");
+  const debug = [
+    `URL:${url ? `set(len ${url.length})` : "MISSING"}`,
+    `ANON:${anon ? `set(len ${anon.length})` : "MISSING"}`,
+    `SERVICE_ROLE:${serviceRole ? "set" : "MISSING"}`,
+    `VERCEL_ENV:${process.env.VERCEL_ENV ?? "n/a"}`,
+    `VERCEL_TARGET_ENV:${process.env.VERCEL_TARGET_ENV ?? "n/a"}`,
+    `keysSeen:[${matchingKeys || "none"}]`,
+  ].join(" ");
 
   return (
     <div className="w-full bg-red-600 px-4 py-2 text-center text-xs font-bold text-white">
