@@ -34,7 +34,12 @@ function getRealSpecs(product: Product, locale: LocaleCode, messages: Messages):
   if (product.brand) rows.push({ label: messages.product.specBrand, value: product.brand });
   if (product.sku) rows.push({ label: messages.product.specSku, value: product.sku });
   if (product.originCountry) {
-    rows.push({ label: messages.product.specOrigin, value: pickLocale(ORIGIN_COUNTRY_CODE_LABEL[product.originCountry], locale) });
+    // Guard against a stored code this map doesn't recognize (bad legacy/seed
+    // data, e.g. a typo'd country code) — skip the row rather than crash.
+    const originLabel = ORIGIN_COUNTRY_CODE_LABEL[product.originCountry];
+    if (originLabel) {
+      rows.push({ label: messages.product.specOrigin, value: pickLocale(originLabel, locale) });
+    }
   }
   return rows;
 }
