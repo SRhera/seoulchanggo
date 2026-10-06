@@ -14,9 +14,17 @@ import { isSupabaseConfigured } from "@/lib/supabase/config";
 export function ProductionConfigBanner() {
   if (process.env.NODE_ENV !== "production" || isSupabaseConfigured()) return null;
 
+  // TEMP DEBUG — remove once the Vercel env var issue is confirmed fixed.
+  // Reports presence/length only, never the actual secret values.
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const debug = `URL:${url ? `set(len ${url.length})` : "MISSING"} ANON:${anon ? `set(len ${anon.length})` : "MISSING"}`;
+
   return (
     <div className="w-full bg-red-600 px-4 py-2 text-center text-xs font-bold text-white">
       프로덕션 환경에 Supabase가 연결되지 않았습니다 — 지금 보이는 데이터는 실제 데이터가 아닙니다.
+      <br />
+      [DEBUG] {debug}
     </div>
   );
 }
